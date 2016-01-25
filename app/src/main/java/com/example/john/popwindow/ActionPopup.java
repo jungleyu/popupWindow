@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+
+import java.util.List;
 
 /**
  * Created by John on 2016/1/24.
@@ -17,26 +20,28 @@ public class ActionPopup extends PopupWindow {
 
     private Context context;
     private View actionView;
-    private PopupWindow popupWindow;
 
-    private View contentView;
+    private LinearLayout contentView;
+    private List<View> actionItems;
     private boolean isLandscape;
 
 
-    public ActionPopup(Context context, View actionView) {
+    public ActionPopup(Context context, View actionView, List<View> actionItems) {
         this.context = context;
         this.actionView = actionView;
+        this.actionItems = actionItems;
         initActionPopup();
     }
 
     private void initActionPopup() {
-        DisplayMetrics dm = context.getResources().getDisplayMetrics();
-        int h = dm.heightPixels;
-        int w = dm.widthPixels;
-
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View childView = inflater.inflate(R.layout.action_layout, null, false);
-        this.setContentView(childView);
+        contentView = new LinearLayout(context);
+        contentView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        contentView.setOrientation(LinearLayout.VERTICAL);
+        for (int i = 0; i < actionItems.size(); i++) {
+            contentView.addView(actionItems.get(i));
+        }
+        contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        this.setContentView(contentView);
         this.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         this.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
         this.update();
@@ -55,10 +60,12 @@ public class ActionPopup extends PopupWindow {
                 return false;
             }
         });
+
     }
 
-    private void resizePopWindow2Show() {
-        int screenHeight, screenWidth;
+    private void updatePopWindow2Show() {
+        int screenHeight, screenWidth, height;
+        int yOffset = 0;
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
         screenHeight = dm.heightPixels;
         screenWidth = dm.widthPixels;
@@ -67,14 +74,13 @@ public class ActionPopup extends PopupWindow {
         } else {
             isLandscape = true;
         }
+        height = contentView.getMeasuredHeight();
         if (!isLandscape) {
+            yOffset = 0 - height - actionView.getHeight();
             this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
             this.update();
-        } else {
-            this.showAsDropDown(actionView, 0, -410);
-            return;
         }
-        this.showAsDropDown(actionView);
+        this.showAsDropDown(actionView, 0, yOffset);
     }
 
     public void show() {
@@ -83,6 +89,6 @@ public class ActionPopup extends PopupWindow {
             this.dismiss();
             return;
         }
-        resizePopWindow2Show();
+        updatePopWindow2Show();
     }
 }

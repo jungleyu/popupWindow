@@ -7,14 +7,13 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/new_curve"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:textColor="#FFF"
         android:background="#39106A"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="New Curve"/>
+        android:text="Open Curve"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -22,28 +21,12 @@
         android:background="#FFF"/>
 
     <Button
-        android:id="@+id/new_series"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:textColor="#FFF"
         android:background="#39106A"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="New Series"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0.2dp"
-        android:background="#FFF"/>
-
-    <Button
-        android:id="@+id/new_test"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:textColor="#FFF"
-        android:background="#39106A"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="New Test"/>
+        android:text="Open Series"/>
 
 </LinearLayout>

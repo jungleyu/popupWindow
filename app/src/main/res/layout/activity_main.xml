@@ -18,25 +18,32 @@
             android:gravity="center"
             android:textColor="#FFF"
             android:text="FXWIRE"/>
-        <LinearLayout
-            android:id="@+id/action_new"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-            <Button
-                android:id="@+id/new_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="New"
-                android:textColor="#fff"
-                android:background="#000"/>
-        </LinearLayout>
-
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="#d1d1d1">
-
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/action_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000">
+        <Button
+            android:id="@+id/new_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="New"
+            android:textColor="#fff"
+            android:background="#000"/>
+        <Button
+            android:id="@+id/open_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Open"
+            android:textColor="#fff"
+            android:background="#000"/>
     </LinearLayout>
 </LinearLayout>
