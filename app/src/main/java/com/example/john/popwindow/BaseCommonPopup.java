@@ -27,10 +27,4 @@ public class BaseCommonPopup<BaseCommomPopupItem> extends BasePopup {
         }
     }
 
-    public class BaseCommomPopupItemListener implements BasePopupItemClickListener {
-        @Override
-        public void onClick(BasePopupItem basePopupItem) {
-
-        }
-    }
 }

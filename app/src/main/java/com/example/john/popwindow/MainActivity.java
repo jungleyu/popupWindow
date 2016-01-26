@@ -2,11 +2,6 @@ package com.example.john.popwindow;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -16,7 +11,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BasePopup.BasePopupItemClickListener {
 
     private BaseCommonPopup newPopup;
 //    private ActionPopup openPopup;
@@ -30,22 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        List<ActionItem> newItems = new ArrayList<>();
-        ActionItem n1 = new ActionItem();
-        n1.setText("New Series");
-        ActionItem n2 = new ActionItem();
-        n2.setText("New Curve");
-        newItems.add(n1);
-        newItems.add(n2);
-
-        ActionItem ai = new ActionItem();
-        ai.setListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-//        newPopup = new BaseCommonPopup(this, actionView, newItems,ai.getListener());
+        newPopup = new BaseCommonPopup(this, actionView, new ArrayList<BaseCommonPopup.BaseCommomPopupItem>(), this);
 
 
 //        List<View> newItems = generateNewActionItems();
@@ -107,4 +87,8 @@ public class MainActivity extends AppCompatActivity {
 //        openPopup.show();
     }
 
+    @Override
+    public void onClick(BasePopup.BasePopupItem basePopupItem) {
+
+    }
 }
